@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Guest Attendance List</title>
+    <link rel="stylesheet">
+<style>
+    html, body{
+        background: url(portrait.png);
+        background-size: cover;
+    }
+    .centered-content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        text-align: center;
+        color :transparent;
+    }
+    .access-form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 200px;
+    }
+    .access-form input{
+        background-color: black;
+        width: 90%;
+        max-width: 350px;
+        color: white;
+        padding: 12px;
+        border: none;
+        border-radius: 30px;
+        font-size: 16px;
+        font-weight: bold;
+        margin: 10px;
+    }
+    .access-form button{
+        background-color: black;
+        color: white;
+        width: 90%;
+        max-width: 200px;
+        padding: 12px;
+        border: none;
+        border-radius: 30px;
+        font-size: 16px;
+        font-weight: bold;
+        margin: 10px;
+    }
+</style>
+</head>
+<body>
+<div class="centered-content">
+    <h1>Welcome, Dear Guests!</h1>
+    <p>Please Check-in!</p>
+<div class="access-form">
+    <input type="text" id="guestName" placeholder="Masukkan Nama Anda Disini">
+    <button type="button" onclick="checkCode()">Submit</button>
+</div>
+</div>
+
+<script>
+const scriptURL = "https://script.google.com/macros/s/AKfycbztHBg3IUZ3Rcdl-fPc2dAr05ZWftc-EctRm5dKUqb5bZEtEpGu0y-4JDSPNaazvQAZ/exec";
+
+function checkCode() {
+
+const userName = document.getElementById("guestName").value;
+
+const formData = new FormData();
+formData.append("name", userName);
+formData.append("guests", 1);
+
+fetch(scriptURL, {
+method: "POST",
+body: formData
+})
+.then(response => response.text())
+.then(data => {
+console.log(data);
+alert("Check-in berhasil!");
+})
+.catch(error => {
+console.error(error);
+alert("Error sending data");
+});
+
+}
+
+</script>
+
+</script>
+<script>
+    if (/Mobi|Android|iPhone|iPad|iPod|Blackberry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        document.body.innerHTML = "<h2 style='text-align:center; margin-top:50px'; Warning : Please open this website on a PC for the best experience.</h2>";
+    }
+</script>
+</body>
+</html>
